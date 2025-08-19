@@ -1,0 +1,132 @@
+/* --- VARIABLES & GLOBAL STYLES --- */
+:root {
+  --primary-purple: #6a44e4;
+  --primary-blue: #00bfff;
+  --text-dark: #333;
+  --text-light: #777;
+  --border-color: #e0e0e0;
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7fd;
+  color: var(--text-dark);
+}
+/* --- HEADER / NAVBAR (FINAL LAYOUT FIX) --- */
+.main-header {
+  padding: 20px 0;
+  background-color: transparent;
+  border-bottom: none;
+}
+.main-header .navbar {
+  background: #FFFFFF;
+  width: 890px;
+  max-width: 95%;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 122px;
+  border: 1px solid #FCFCFC;
+  box-shadow: 0px 0px 20px rgba(127, 127, 127, 0.15);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+}
+.navbar-collapse {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+.navbar-brand {
+  margin-right: auto;
+}
+.logo {
+  width: 44px;
+  height: 45px;
+  object-fit: contain;
+}
+.navbar-nav {
+  display: flex;
+  gap: 11.14px;
+}
+.navbar-nav .nav-link {
+  color: var(--text-dark);
+  font-weight: 500;
+  margin: 0;
+  padding: 5px 15px;
+}
+.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link:hover {
+  color: var(--primary-purple);
+}
+.create-job-btn {
+  background: linear-gradient(90deg, #8e44ad, var(--primary-purple));
+  border: none;
+  width: 133px;
+  height: 48px;
+  border-radius: 12px;
+  padding: 5px;
+  font-weight: 500;
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+/* --- FILTER BAR --- */
+.filter-bar {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px 30px;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--card-shadow);
+}
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-right: 1px solid var(--border-color);
+  padding: 0 25px;
+  flex-grow: 1;
+}
+.filter-item:first-child { padding-left: 0; }
+.filter-item:last-child { border-right: none; padding-right: 0; flex-grow: 0; }
+.filter-item i { color: var(--text-light); font-size: 1.1rem; }
+.filter-item input, .filter-item select { border: none; outline: none; background: transparent; font-weight: 500; width: 100%; }
+.search-filter { flex-grow: 2; }
+.salary-filter { flex-direction: column; align-items: flex-start; gap: 5px; }
+.salary-filter label { font-size: 0.9em; color: var(--text-light); }
+.salary-filter input[type="range"] { width: 150px; }
+.salary-filter span { font-weight: 600; color: var(--text-dark); }
+/* --- JOB CARDS --- */
+.job-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--card-shadow);
+}
+.job-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
+.job-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.company-logo { width: 50px; height: 50px; border-radius: 8px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; padding: 5px; }
+.company-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.time-tag { background-color: #e0f2ff; color: #007bff; font-size: 0.8em; font-weight: 500; padding: 4px 10px; border-radius: 12px; }
+.job-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; }
+.job-meta { display: flex; gap: 15px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 15px; }
+.job-meta i { margin-right: 5px; }
+.job-description { font-size: 0.85rem; color: var(--text-light); padding-left: 18px; margin-bottom: 20px; flex-grow: 1; }
+.job-description li { margin-bottom: 5px; }
+.btn-apply { background-color: var(--primary-blue); color: #fff; border: none; border-radius: 8px; width: 100%; padding: 12px 0; font-weight: 600; margin-top: auto; }
+/* --- MODAL STYLES --- */
+.modal-content { border-radius: 12px; border: none; }
+.modal-header { border-bottom: 1px solid var(--border-color); }
+.modal-title { font-weight: 600; }
+.modal-footer { border-top: 1px solid var(--border-color); }
+.publish-btn { background-color: var(--primary-blue); border-color: var(--primary-blue); }

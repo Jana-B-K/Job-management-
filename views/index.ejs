@@ -1,0 +1,96 @@
+<%- include('partials/header') %>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+  <div class="filter-item search-filter">
+    <i class="fas fa-search"></i>
+    <input type="text" id="title-search" placeholder="Search By Job Title, Role">
+  </div>
+  <div class="filter-item location-filter">
+    <i class="fas fa-map-marker-alt"></i>
+    <select id="location-search">
+      <option value="">Preferred Location</option>
+      <option value="Bengaluru">Bengaluru</option>
+      <option value="Pune">Pune</option>
+      <option value="Mumbai">Mumbai</option>
+    </select>
+  </div>
+  <div class="filter-item type-filter">
+    <i class="fas fa-briefcase"></i>
+    <select id="type-filter">
+      <option value="">Job type</option>
+      <option value="Full-time">Full-time</option>
+      <option value="Contract">Contract</option>
+    </select>
+  </div>
+  <div class="filter-item salary-filter">
+    <label>Salary Per Month</label>
+    <input type="range" id="salary-range" min="0" max="100000" step="5000" value="80000">
+    <span id="salary-value">₹50k - ₹80k</span>
+  </div>
+</div>
+
+<!-- Job Listings Grid -->
+<div id="job-listings" class="row gy-4">
+  <% jobs.forEach(job => { %>
+    <div class="col-lg-3 col-md-6">
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="company-logo"><img src="<%= job.logo %>" alt="<%= job.company %> Logo"></div>
+          <span class="time-tag"><%= job.posted %></span>
+        </div>
+        <h5 class="job-title"><%= job.title %></h5>
+        <div class="job-meta">
+          <span><i class="fas fa-user-friends"></i> <%= job.experience %></span>
+          <span><i class="fas fa-briefcase"></i> <%= job.jobType %></span>
+          <span><i class="fas fa-rupee-sign"></i> <%= job.salary %></span>
+        </div>
+        <ul class="job-description">
+          <% if (Array.isArray(job.description)) { %>
+            <% job.description.forEach(point => { %>
+              <li><%= point %></li>
+            <% }) %>
+          <% } else if (job.description) { %>
+            <li><%= job.description %></li>
+          <% } %>
+        </ul>
+        <a href="#" class="btn btn-apply">Apply Now</a>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<!-- Create Job Modal -->
+<div class="modal fade" id="createJobModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Job Opening</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/jobs" method="POST">
+          <div class="row">
+            <div class="col-md-6 mb-3"><label class="form-label">Job Title</label><input type="text" class="form-control" name="title" required></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Company Name</label><input type="text" class="form-control" name="companyName" placeholder="Amazon, Microsoft, Swiggy" required></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3"><label class="form-label">Location</label><select class="form-select" name="location" required><option selected disabled value="">Choose Preferred Location</option><option>Chennai</option><option>Bengaluru</option></select></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Job Type</label><select class="form-select" name="jobType" required><option selected disabled value="">Choose Job Type</option><option>Full-time</option><option>Part-time</option></select></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3"><label class="form-label">Salary Range</label><input type="text" class="form-control" name="salaryRange" placeholder="e.g., 12LPA" required></div>
+            <div class="col-md-6 mb-3"><label class="form-label">Application Deadline</label><input type="date" class="form-control" name="deadline" required></div>
+          </div>
+          <div class="mb-3"><label class="form-label">Job Description</label><textarea class="form-control" name="jobDescription" rows="4" placeholder="Each new line will be a bullet point" required></textarea></div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-secondary">Save Draft</button>
+            <button type="submit" class="btn btn-primary publish-btn">Publish &raquo;</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
